@@ -1,5 +1,7 @@
 from bs4 import BeautifulSoup
 import requests
+import datetime
+from datetime import date
 
 VIZ_SITE = 'https://www.viz.com/shonenjump/chapters/'
 
@@ -12,8 +14,12 @@ def read_manga_html(manga: str) -> str:
     table = soup.find("div", {"class": "o_sortable brdr-dotted-lid"})
     row = table.find('td', {"valign":"middle"})
 
-    # if row.getText().split(' ')[0] == "Today":
-    return "{} was updated. You can read it at {}".format(manga, link)
+
+    if datetime.datetime.strptime(row.getText(), '%B %d, %Y').date() == date.today():
+        print("HIT")
+        return "{} was updated. You can read it at {}".format(manga, link)
+    else:
+        return ''
 
     #print(soup.prettify())
 
