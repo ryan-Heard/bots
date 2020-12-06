@@ -20,4 +20,4 @@ def send_manga():
         message.send_message(my_num, sender_num, body)
 
 if __name__ == "__main__":
-    send_message()
+    send_manga()
