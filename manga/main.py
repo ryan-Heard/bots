@@ -1,5 +1,5 @@
-import message
-from vizmedia import read_manga_html
+import manga.message as message
+from manga.vizmedia import read_manga_html
 import datetime
 import os
 
@@ -8,7 +8,7 @@ sender_num = os.environ['SENDER_NUM']
 my_num = os.environ['MY_NUM']
 
 
-if __name__ == "__main__":
+def send_manga():
     body = ''
     for manga in VIZ_MANGA_I_WANT:
         update = read_manga_html(manga)
@@ -18,3 +18,6 @@ if __name__ == "__main__":
     
     if body != '':
         message.send_message(my_num, sender_num, body)
+
+if __name__ == "__main__":
+    send_message()
